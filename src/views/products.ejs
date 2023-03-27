@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/grid.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="shortcut icon" href="//theme.hstatic.net/1000344185/1000806553/14/favicon.png?v=294" type="image/png" />
+    <title>SWE - <%= dataImage[0].masp%></title>
+</head>
+<body>
+    <!-- HEADER -->
+    <%- include ('./header') -%>
+    <div class="container__products">
+        <div class="grid wide products__container">
+            <div class="row">
+                <div class="col l-6">
+                    <img src="<%= dataImage[0].hinhanhsp %>" alt="" class="image__products">
+                    <div class="list__img__product">
+                        <div class="row">
+                            <div class="col l-1-7">
+                                <img class="item__img__product" src="<%= dataImage[0].hinhanhsp %>" alt="">
+                            </div>
+                            <div class="col l-1-7">
+                                <img class="item__img__product" src="<%= dataImage[1].hinhanhsp %>" alt="">
+                            </div>
+                            <div class="col l-1-7">
+                                <img class="item__img__product" src="<%= dataImage[2].hinhanhsp %>" alt="">
+                            </div>
+                            <div class="col l-1-7">
+                                <img class="item__img__product" src="<%= dataImage[3].hinhanhsp %>" alt="">
+                            </div>
+                            <div class="col l-1-7">
+                                <img class="item__img__product" src="<%= dataImage[4].hinhanhsp %>" alt="">
+                            </div>
+                            <div class="col l-1-7">
+                                <img class="item__img__product" src="<%= dataImage[5].hinhanhsp %>" alt="">
+                            </div>
+                            <div class="col l-1-7">
+                                <img class="item__img__product" src="<%= dataImage[6].hinhanhsp %>" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l-6">
+                    <p class="product__name">
+                        <%= dataItem[0].tensp %>
+                    </p>
+                    <p class="product__price"><%= (dataItem[0].giasp/1000).toFixed(3)%> VNĐ</p>
+
+                    <form action="/products/<%=dataItem[0].masp%>" method="POST">
+                    <% if(dataItem[0].maphanloai =='phukien') {%>
+                    <div class="select-size hidden">
+                        <!-- SIZE S -->
+                        <div class="product__size__S">
+                            <% if(dataItem[0].masize == 'S' && dataItem[0].tonkho>0) {%>
+                            <input class="radio__S" type="radio" name="size" checked value="S" id="S" hidden>
+                            <label class="box__S" for="S">
+                                S
+                            </label>
+                            <% } else {%>
+                            <input class="radio__S" type="radio" disabled name="size" value="S" id="S" hidden>
+                            <label class="box__S box__soldout"  for="S">
+                                S
+                            </label>
+                            <% } %>
+                        </div>
+
+                        <div class="product__size__M">
+                            <% if(dataItem[1].masize == 'M' && dataItem[1].tonkho>0) {%>
+                            <input class="radio__M" type="radio" name="size" checked value="M" id="M" hidden>
+                            <label class="box__M" for="M">
+                                M
+                            </label>
+                            <% } else {%>
+                            <input class="radio__M" type="radio" disabled name="size" value="Mã" id="M" hidden>
+                            <label class="box__M box__soldout"  for="M">
+                                M
+                            </label>
+                            <% } %>
+                        </div>
+
+                        <div class="product__size__L">
+                            <% if(dataItem[2].masize == 'L' && dataItem[2].tonkho>0) {%>
+                                <input class="radio__L" type="radio" name="size" checked value="L" id="L" hidden >
+                                <label class="box__L" for="L">
+                                    L
+                                </label>
+                                <% } else {%>
+                                    <input class="radio__L" type="radio" disabled name="size" value="L" id="L" hidden >
+                                    <label class="box__L box__soldout" for="L">
+                                        L
+                                    </label>  
+                                <% } %>
+                        </div>
+                        <div class="product__size__XL">
+
+                            <% if(dataItem[3].masize == 'XL' && dataItem[3].tonkho>0) {%>
+                                <input class="radio__XL" type="radio" name="size" value="XL" checked id="XL" hidden >
+                                <label class="box__XL" for="XL">
+                                    XL
+                                </label>
+                                <% } else {%>
+                                    <input class="radio__XL" type="radio" disabled  name="size" value="XL" id="XL" hidden >
+                                    <label class="box__XL box__soldout" for="XL">
+                                        XL
+                                    </label>
+                                <% } %>
+                                    
+
+                        </div>
+                    </div>
+                    <%} else{%>
+                        <p class="product__size">Kích thước</p>
+                        <div class="select-size">
+                            <!-- SIZE S -->
+                            <div class="product__size__S">
+                                <% if(dataItem[0].masize == 'S' && dataItem[0].tonkho>0) {%>
+                                <input class="radio__S" type="radio" name="size" checked value="S" id="S" hidden>
+                                <label class="box__S" for="S">
+                                    S
+                                </label>
+                                <% } else {%>
+                                <input class="radio__S" type="radio" disabled name="size" value="S" id="S" hidden>
+                                <label class="box__S box__soldout"  for="S">
+                                    S
+                                </label>
+                                <% } %>
+                            </div>
+    
+                            <div class="product__size__M">
+                                <% if(dataItem[1].masize == 'M' && dataItem[1].tonkho>0) {%>
+                                <input class="radio__M" type="radio" name="size" checked value="M" id="M" hidden>
+                                <label class="box__M" for="M">
+                                    M
+                                </label>
+                                <% } else {%>
+                                <input class="radio__M" type="radio" disabled name="size" value="M" id="M" hidden>
+                                <label class="box__M box__soldout"  for="M">
+                                    M
+                                </label>
+                                <% } %>
+                            </div>
+    
+                            <div class="product__size__L">
+    
+                                <% if(dataItem[2].masize == 'L' && dataItem[2].tonkho>0) {%>
+                                    <input class="radio__L" type="radio" name="size" value="L" checked id="L" hidden >
+                                    <label class="box__L" for="L">
+                                        L
+                                    </label>
+                                    <% } else {%>
+                                        <input class="radio__L" type="radio" disabled  name="size" value="L" id="L" hidden >
+                                        <label class="box__L box__soldout" for="L">
+                                            L
+                                        </label>
+                                    <% } %>
+                                        
+    
+                            </div>
+
+                            <div class="product__size__XL">
+    
+                                <% if(dataItem[3].masize == 'XL' && dataItem[3].tonkho>0) {%>
+                                    <input class="radio__XL" type="radio" name="size" value="XL" checked id="XL" hidden >
+                                    <label class="box__XL" for="XL">
+                                        XL
+                                    </label>
+                                    <% } else {%>
+                                        <input class="radio__XL" type="radio" disabled  name="size" value="XL" id="XL" hidden >
+                                        <label class="box__XL box__soldout" for="XL">
+                                            XL
+                                        </label>
+                                    <% } %>
+                                        
+    
+                            </div>
+                        </div>
+                    <%}%>
+                            <button class="add__cart" name="addcart" type="submit">
+                                THÊM VÀO GIỎ
+                            </button>
+                            <div class="contact">
+                                TƯ VẤN MUA HÀNG
+                            </div>
+                            <br>
+                            <hr class="SKU__top">
+                            <span class="SKU">Mã sản phẩm: </span> 
+                            <input type="hidden" name="idProduct" class="id_product" value="<%= dataItem[0].masp%>"><%= dataItem[0].masp%></input>
+
+                        </form>
+                    <p class="product__infomation">Thông tin sản phẩm: <%= dataItem[0].infosanpham %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/product.js"></script>
+    <!-- BOTTOM -->
+    <%- include ('./bottom') -%>
+</body>
+<script src="../js/js.js"></script>
+
+</html>

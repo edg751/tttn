@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/grid.css" />
+    <link rel="stylesheet" href="../css/qlsp.css" />
+    <link rel="shortcut icon" href="//theme.hstatic.net/1000344185/1000806553/14/favicon.png?v=294" type="image/png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Quản lý sản phẩm </title>
+</head>
+
+<body class="body__qlsp">
+    <div class="contaier__qlsp">
+        <div class="header__info">
+            <p class="tennv">
+                Xin chào 
+                <!-- < /%=dataUser[0].tennv%> -->
+                </p>
+                <a href="/logout" class="logout">Đăng xuất</a>
+        </div>
+        <!-- <div class="qlsp__header">
+            QUẢN LÝ SẢN PHẨM
+        </div> -->
+        <div class="grid qlsp__container">
+            <div class="row row__qlsp">
+                <div class="col l-3 qlsp_left_container">
+                    <a href="/qlsp" class="qlsp__title"> <i class="fa-sharp fa-solid fa-list-check icon__qlsp"></i>Quản Lý Đơn Hàng</a>
+                    <p class="nav__tieude"><i class="fa-sharp fa-solid fa-diagram-project" icon__qlsp></i> Quản lý đơn hàng</p>
+                    <a class="qldh__link" href="/danhsachdonhang"><i class="fa-solid fa-receipt icon_nav_dh"></i>Đơn hàng chờ duyệt</a>
+                    <a class="qldh__link" href="/donhangdaduyet" > <i class="fa-solid fa-file-invoice-dollar icon_nav_dh"></i>Đơn hàng đã duyệt</a>
+                    <a href="/qlsp" class="nav__tieude"><i class="fa-sharp fa-solid fa-tarp icon__qlsp"></i>Quản lý sản phẩm</a>
+                </div>
+                <div class="col l-1"></div>
+                <div class="col l-8 qlsp_right_container">
+                    <p class="title__dssp title__dhcd">
+                        ĐƠN HÀNG DÃ DUYỆT
+                    </p>
+
+                    <div class="list__dssp">
+                        <div class="row row__sp__duyet">
+                            <div class="col l-2">
+                                <p class="ngaylapdh__titledhcd">Ngày lập đơn hàng</p>
+                            </div>
+                            <div class="col l-2">
+                                <p class="masp__titledhcd">Mã sản phẩm</p>
+                            </div>
+                            <div class="col l-1">
+                                <p class="masp__SLdhcd">SL</p>
+                            </div>
+                            <div class="col l-1">
+                                <p class="masp__Sizedhcd">Size</p>
+                            </div>
+                            <div class="col l-2">
+                                <p class="masp__Sizedhcd">Tên khách</p>
+                            </div>
+                            <div class="col l-2">
+                                <p class="masp__Sizedhcd">Địa chỉ</p>
+                            </div>
+                            <div class="col l-2">
+                                <p class="masp__Sizedhcd">SDT</p>
+                            </div>
+                        </div>
+
+                        <% for (var i=0;i<dataDHCD.length;i++) {%>
+                            <!-- Kiểm tra từ đàu luôn mới đúng, kiểm tra token thằng tiếp theo có bằng nó ko ? nếu bằng thì thằng tiep theo bị rút gọn -->
+                                <div class="row dh__duyet">
+                                    
+                                    <div class="col l-2">
+                                        <p class="ngaylapdh__titledhcd"><%=(dataDHCD[i].ngaylapdh).getDate()%>-<%=(dataDHCD[i].ngaylapdh).getMonth()+1%>-<%=(dataDHCD[i].ngaylapdh).getFullYear()%></p>
+                                    </div>
+                                    <div class="col l-2">
+                                        <p class="masp__titledhcd"><%=dataDHCD[i].masp%></p>
+                                    </div>
+                                    <div class="col l-1">
+                                        <p class="masp__SLdhcd"><%=dataDHCD[i].soluong%></p>
+                                    </div>
+                                    <div class="col l-1">
+                                        <p class="masp__Sizedhcd"><%=dataDHCD[i].size%></p>
+                                    </div>
+                                    <div class="col l-2">
+                                        <p class="masp__Sizedhcd"><%=dataDHCD[i].tenkh%></p>
+                                    </div>
+                                    <div class="col l-2">
+                                        <p class="masp__Sizedhcd"><%=dataDHCD[i].diachi%></p>
+                                    </div>
+                                    <div class="col l-2">
+                                        <p class="masp__Sizedhcd"><%=dataDHCD[i].SDT%></p>
+                                    </div> 
+                              </div>
+                        <%}%>
+                                <!-- <div class="row dh__duyet">
+                                    <div class="col l-6 btn__duyet"><a href="/doitrangthaiduyet/<%=dataDHCD[0].token%>" class="btn__duyet duyet duyet__link">Duyệt</a></div>
+                                    <div class="col l-6 btn__duyet"><a href="/doitrangthaiduyetKO/<%=dataDHCD[0].token%>" class="btn__duyet khongduyet duyet__link">Không</a></div>   
+                                </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../js/qlsp.js"></script>
+</body>
+</html>

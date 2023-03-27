@@ -1,0 +1,447 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .contaier__qlsp{
+    background-color: white;
+    border-radius: 10px;
+    margin: 70px;
+    box-shadow: 0 4px 20px 5px rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+  }
+  .body__qlsp{
+    background-color: #e6e8ec;
+    
+  }
+  .tennv{
+    margin-top: 10px;
+    margin-right: 10px;
+    font-size: 17px;
+  }
+  .qlsp_left_container{
+    border-right: solid 1.3px rgb(223, 220, 220);
+    padding-right: 0;
+  }
+  .qlsp_right_container{
+  }
+  .list__dssp{
+    width: 100%;
+  }
+  .nav__tieude{
+    text-align: center;
+    font-size: 20px;
+    margin-top: 30px;
+    display: block;
+    color:#183153;
+  }
+  .qlsp__title{
+    background-color: #ffba32;
+    padding: 20px;
+    text-align: center;
+    padding-right: 10px;
+    color: #183153;
+    border-radius: 5px;
+    font-size: 20px;
+    display: block;
+    font-weight: 700;
+  }
+  .logout{
+    margin-bottom: 10px;
+    color: black;
+    display: block;
+    background-color: #ffba32;
+    padding: 8px;
+    border-radius: 15px;
+    margin-top: 5px;
+    margin-right: 10px;
+    text-decoration: none;
+}
+  .body__login{
+        background-color: 
+        #ffba32 ;
+        background-image: url('https://baonguyen.online/imageswe/login/dashboard_sign_in_2.png');
+  }
+  .login__container{
+    margin-left: 812px;
+    margin-top: 130px;
+  }
+  .qlsp__header{
+    text-align: center;
+    font-size: 30px;
+    color: black;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-weight: 700;
+  }
+.header__info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    border-bottom: solid 1.3px rgb(223, 220, 220);
+}
+.icon__qlsp{
+    margin-right: 10px;
+}
+.icon_nav_dh{
+    text-decoration: none;
+    margin-right: 10px;
+}
+.qldh__link{
+
+    display: block;
+    text-align: left;
+    margin-left: 40%;
+    color:#183153;
+    font-size: 17px;
+    margin-top: 30px;
+}
+.title__dssp{
+    text-align: center;
+    font-size: 20px;
+    margin-top: 20px;
+    color: black;
+}
+.row__qlsp{
+    padding-bottom: 30px;
+}
+.confirm-del-form{
+    width: 500px;
+    height: 200px;
+    background-color: #ffba32;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 400px;
+}
+.text-del-confirm{
+    font-size: 20px;
+    text-align: center;
+    line-height: 60px;
+}
+.yes-or-no{
+    margin-top: 80px;
+    display: flex;
+    justify-content: space-evenly;
+}
+.tensp_title,.masp_title{
+    font-size: 20px;
+    line-height: 50px;
+}
+.yes,.no{
+    cursor: pointer;
+    background-color: white;
+    width: 100px;
+    border-radius: 10px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: none;
+}
+.yes:hover,.no:hover{
+    background-color: rgb(231, 10, 10);
+    color: white;
+}
+.them__sp{
+    margin-bottom: 50px;
+}
+.confirm-del{
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #00000054;
+display: none;
+}
+
+.display-block{
+    display: block;
+}
+.row-1-sp{
+border: rgb(153, 151, 151) solid 1px;
+padding: 10px;
+margin-top: 3px;
+border-radius: 5px;
+}
+.sp-chi-tiet,.sp-xoa{
+    display: block;
+    text-decoration: none;
+    color: black;
+    width: 50px;
+    margin-top: 6px;
+    text-align: center;
+}
+.sp-chi-tiet{
+    background-color: #ffba32;
+    border-radius: 5px;
+    line-height: 21px;
+    font-size: 15px;
+    width: 70px;
+    text-align: center;
+    margin-left: 90px;
+    padding: 5px;
+}
+.sp-xoa{
+    padding: 3px;
+    border-radius: 5px;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: #ffba32;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding: 5px;
+}
+.sp-xoa:hover,.sp-chi-tiet:hover,.add__sp:hover{
+    background-color: #b5dac9;
+}
+.form-button{
+    display: flex;
+    justify-content: space-between;
+}
+.sp-name{
+    margin-bottom: 2px;
+    width: 300px;
+    margin-left: 25px;
+    padding: 7px;
+    font-size: 17px;
+    height: 30px;
+}
+.sp-name-va-ma{
+    width: 700px;
+    margin-left: 0px;
+    padding: 2px;
+}
+.ngaybatdauban{
+    font-size: 20px;
+}
+.sp-ngayban{
+    width: 150px;
+    font-size: 17px;
+    height: 30px;
+    margin-top: 50px;
+    margin-left: 20px;
+}
+.sp-gia{
+    width: 100px;
+    padding-left: 10px;
+    font-size: 17px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 47px;
+    margin-top: 20px !important;
+}
+.sp-size-L{
+    width: 50px;
+    padding-left: 10px;
+    font-size: 17px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 47px;
+    margin-top: 20px !important;
+}
+.sp-size-M{
+    width: 50px;
+    padding-left: 10px;
+    font-size: 17px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 42px;
+    margin-top: 20px !important;
+}
+.sp-size-S{
+    width: 50px;
+    padding-left: 10px;
+    font-size: 17px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 45px;
+    margin-top: 20px !important;
+}
+.sp-size-XL{
+    width: 50px;
+    padding-left: 10px;
+    font-size: 17px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 34px;
+    margin-top: 20px !important;
+    margin-bottom: 20px;
+}
+.sp-hinh-tt{
+    font-size: 20px;
+}
+.sp-phanloai{
+    width: 100px;
+    padding-left: 10px;
+    font-size: 13px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 58px;
+    margin-top: 20px !important;
+}
+.sp-info{
+    width: 300px;
+    padding-left: 10px;
+    font-size: 13px;
+    height: 30px;
+    line-height: 30px;
+    margin-left: 2px;
+    margin-top: 20px !important;
+}
+.sp-luotmua{
+    height: 30px;
+    margin-left: 84px;
+    margin-top: 20px !important;
+    width: 50px;
+    padding-left: 10px;
+}
+.add__sp{
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    display: block;
+    margin-left: auto;
+    margin-right: auto  ;
+    background-color: #ffba32;
+    width: 150px;
+
+    padding: 8px;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.sp-them{
+    height: 40px;
+    width: 200px;
+    margin-top: 120px;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-left: -50px;
+}
+.sp-hinh{
+    width: 800px;
+    height: 30px;
+    font-size: 20px;
+    padding: 5px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+.sp-capnhat{
+    margin-left: -62px;
+    margin-top: 180px;
+    height: 50px;
+}
+.sp-tonkho{
+    margin-top: 2px;
+}
+.sp-info{
+    margin-top: 2px;
+}
+.sp-gia{
+    margin-top: 2px;
+}
+.sp-luotmua{
+    margin-top: 2px;
+    font-size: 17px;
+}
+.login__header{
+    margin-top: 160px;
+}
+.login__submit{
+    padding: 5px;
+    display: block;
+    margin-top: 20px;
+    height: 50px;
+    width: 100%;
+    text-transform: uppercase;
+    background-color: #554b93;
+    color: white;
+    font-size: 17px;
+    font-weight: 700;
+    border: none;
+    border-radius: 5px;
+}
+.login__submit:hover{
+    cursor: pointer;
+    opacity: 0.9;
+}
+.form__login{
+    margin-top: 50px;
+    border-radius: 5px;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 4px 20px 15px rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+.taikhoan_td,.matkhau_td{
+    margin-bottom: 0px;
+    display: block;
+    font-size: 18px;
+}
+.taikhoan, .matkhau{
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 30px;
+    height: 40px;
+    border: solid 1px rgb(179, 169, 169);   
+}
+
+  .row__sp__duyet{
+    text-align: center;
+  }
+.dh__duyet{
+    border: 1px solid rgb(182, 182, 182);
+    text-align: center;
+    padding: 10px;
+    border-radius: 3px;
+    margin-top: 10px;
+    padding-bottom: 20px;
+    border-right: none;
+    /* width: 100%; */
+  }
+
+  .link_DHCH{
+    text-decoration: none;
+    padding: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .btn__duyet{
+    width: 100px;
+    height: 30px;
+    text-transform: uppercase;
+    margin-top: 5px;
+  }
+  .duyet__link{
+    padding: 5px;
+    display: block;
+    text-decoration: none;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .duyet{
+    background-color: cadetblue;
+    color: white;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .title__dhcd{
+    margin-bottom: 40px;
+  }
+.khongduyet{
+    background-color: red;
+    color: white;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.duyet:hover,.khongduyet:hover{
+    opacity: 0.7;
+}

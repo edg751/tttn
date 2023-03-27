@@ -1,0 +1,62 @@
+<div class="header">
+  <div class="header__cover">
+      <div class="header__img-header">
+          <a href="/" class="header__img-header--link"><img class="img-header__image" src="https://baonguyen.online/imageswe/swe_logo/swe.gif" alt="" /></a>
+        </div>
+        <div class="header__danh-muc">
+          <ul class="header__danh-muc__danh-muc">
+            <li class="header__danh-muc__danh-muc__item">
+              <a href="/" class="header__danh-muc__danh-muc__item__link">HOME</a>
+            </li>
+            <li class="header__danh-muc__danh-muc__item">
+              <a href="/collections/all" class="header__danh-muc__danh-muc__item__link">ALL</a>
+            </li>
+            <li class="header__danh-muc__danh-muc__item">
+              <a href="/collections/bestseller" class="header__danh-muc__danh-muc__item__link">BEST</a>
+            </li>
+            <li class="header__danh-muc__danh-muc__item">
+              <a href="/collections/tops" class="header__danh-muc__danh-muc__item__link">TOPS</a>
+            </li>
+            <li class="header__danh-muc__danh-muc__item">
+              <a href="/collections/outerwear" class="header__danh-muc__danh-muc__item__link">OUTERWEAR</a>
+            </li>
+            <li class="header__danh-muc__danh-muc__item">
+              <a href="/collections/bottoms" class="header__danh-muc__danh-muc__item__link">BOTTOMS</a>
+            </li>
+            <li class="header__danh-muc__danh-muc__item">
+              <a href="/collections/accessories" class="header__danh-muc__danh-muc__item__link">ACCESSORIES</a>
+            </li>
+            <li class="header__danh-muc__danh-muc__item">
+              <a href="/collections/sale" class="header__danh-muc__danh-muc__item__link">SALE</a>
+            </li>
+            <li class="header__danh-muc__danh-muc__item">
+              <a href="/collections/store" class="header__danh-muc__danh-muc__item__link">STORE</a>
+            </li>
+            <li class="header__danh-muc__danh-muc__item">
+              <a href="/collections/hiring" class="header__danh-muc__danh-muc__item__link">HIRING</a>
+            </li>
+          </ul>
+        </div>
+        <div class="header__search-cart-header">
+          <ul class="header__search-cart-header__list">
+              <li class="header__search-cart-header__item">
+                  <p class="header__search-cart-header__item__link">SEARCH</p>
+                  <form class="header__item__search" action="/searchresult" method="POST">
+                      <input class="header__item__search__btn" type="text" placeholder="SEARCH" value="" name="textSearch">
+                      <input class="header__item__search__btn__submit" type="submit" value="SEARCH">
+                  </form>
+              </li>
+              <li class="header__search-cart-header__item">
+                  <a href="/cart" class="header__search-cart-header__item__link">CART</a>
+                  <%try{%>
+                  <p class="SL_CART"><%=SoLuongCart[0].SL%></p>
+                  <%} catch(Ex){%>
+                    <p class="SL_CART">0</p>
+                  <%}%>
+
+                  <!-- SL -->
+              </li>
+          </ul>
+        </div>
+  </div>
+</div>

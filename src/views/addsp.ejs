@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/grid.css" />
+    <link rel="stylesheet" href="./css/qlsp.css" />
+    <link rel="shortcut icon" href="//theme.hstatic.net/1000344185/1000806553/14/favicon.png?v=294" type="image/png" />
+    <title>Quản lý sản phẩm </title>
+</head>
+<body class="body__qlsp">
+    <div class="contaier__qlsp">
+        <div class="header__info">
+            <p class="tennv">
+                Xin chào 
+                <!--  -->
+                </p>
+                <a href="/logout" class="logout">Đăng xuất</a>
+        </div>
+        <div class="qlsp__header">
+            THÊM SẢN PHẨM 
+        </div>
+        <div class="grid qlsp__container">
+
+            <div class="list__dssp">
+                <div class="row row__qlsp">
+                    <div class="col l-3 qlsp_left_container">
+                        <a href="/qlsp" class="qlsp__title"> <i class="fa-sharp fa-solid fa-list-check icon__qlsp"></i>Quản Lý Sản Phẩm</a>
+                        <p class="nav__tieude"><i class="fa-sharp fa-solid fa-diagram-project" icon__qlsp></i> Quản lý đơn hàng</p>
+                        <a class="qldh__link" href="/danhsachdonhang"><i class="fa-solid fa-receipt icon_nav_dh"></i>Đơn hàng chờ duyệt</a>
+                        <a class="qldh__link" href="/donhangdaduyet" > <i class="fa-solid fa-file-invoice-dollar icon_nav_dh"></i>Đơn hàng đã duyệt</a>
+                        <a href="/qlsp" class="nav__tieude"><i class="fa-sharp fa-solid fa-tarp icon__qlsp"></i>Quản lý sản phẩm</a>
+                    </div>
+                    <div class="col l-1"></div>
+
+                        <form action="" method="post" class="form-button col l-8">
+                
+                        <div class="col l-8 qlsp_right_container">
+                            <p class="title__dssp them__sp">
+                                NHẬP THÔNG TIN SẢN PHẨM
+                            </p>
+                            <label for="" class="tensp_title">Tên sản phẩm : </label>
+
+                            <input class="sp-name" name="tensp" value="" required></input>
+                            <br>
+                            <label for="" class="masp_title">Mã sản phẩm :  </label>
+                            <input class="sp-name" name="masp" value="" required></input>
+                        </div>
+                        <div class="col l-4">
+                                <button class="sp-xoa sp-them" name="" type="submit" value="" >Thêm </button>
+                        </div>
+                    </form>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/grid.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <title>SWE - Cart</title>
+    <link rel="shortcut icon" href="//theme.hstatic.net/1000344185/1000806553/14/favicon.png?v=294" type="image/png" />
+</head>
+<body>
+    <!-- HEADER -->
+    <%- include ('./header') -%>
+    <!-- BODY -->
+    <div class="grid-800 container__cart">
+        <h1 class="title__cart">
+            MY CART
+            <% var sum=0; %>
+            <form action="/cart" method="post">
+                <div class="grid-800 card__container">
+                    <div class="row">
+                        <div class="col l-6 title__product">Product</div>
+                        <div class="col l-3 title__quantity">Quantity</div>
+                        <div class="col l-2 title__total">Total</div>
+                        <div class="col l-1 title__close"></div>
+                    </div>
+                    
+                    <% for(var i = 0;i<listCart.length;i++) { %>
+                        <div class="row ">
+                            <div class="col l-6 cart__product">
+                                <div class="row">
+                                    <img class="cart__imgitem col l-3" src="<%=listCart[i].hinh_truoc%>" alt="">
+                                    <div class="col l-9">
+                                        <p class="cart__itemname"><%= listCart[i].masp %></p>
+                                        <input type="text" value="<%= listCart[i].masp %>" hidden name="ma-sp-hidden">
+                                        <p class="cart__itemsize"><%= listCart[i].size %> - <%= (listCart[i].giasp/1000).toFixed(3) %> VNĐ</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="number" class="col l-3 cart__quantity" value="<%=listCart[i].soluong%>" max="99" min="1"></input>
+                            <div class="col l-2 cart__total"><%sum+=((listCart[i].giasp * listCart[i].soluong))%> <%=((listCart[i].giasp * listCart[i].soluong)/1000).toFixed(3) %></div>
+                            <button class="col l-1 cart__close" type="menu" name="deleteItemCart" value="<%= listCart[i].masp %> <%= listCart[i].size %>">X</button>    
+                        </div>
+                    <%}%>
+                    <div class="row">
+                        <div class="col l-1"></div>
+                        <div class="col l-10">
+                            <div class="row total__cover">
+                                <p class="col l-6 subtotal">Subtotal</p>
+                                <p class="col l-6 total"><%=(sum/1000).toFixed(3)%> VNĐ</p>
+                            </div>
+                        </div>
+                        <div class="col l-1"></div>
+                    </div>
+
+                        <a href="/checkout" class="checkout" type="submit">CHECK OUT</a>
+                </div>
+            </form>
+        </h1>
+    </div>
+    <!-- BOTTOM -->
+    <%- include ('./bottom') -%>
+</body>
+    <script src="./js/js.js"></script>
+</html>

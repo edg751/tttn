@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/grid.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="shortcut icon" href="//theme.hstatic.net/1000344185/1000806553/14/favicon.png?v=294" type="image/png" />
+    <title>SWE</title>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <%- include ('./header') -%>
+    <!-- BODY -->
+    <div class="grid wide container__checkout">
+      <div class="row">
+          <div class="col l-6 checkout__left">
+            <form method="post" >
+              <p class="checkout__left__title">SWE (STREETWEAREAZY)</p>
+              <p class="shipping__infomation">Shipping Information</p>
+              <p class="enter__infomation">Enter your information</p>
+              <input class="ip__fullname" type="text" name="name" required placeholder="Full name">
+              <div class="row">
+                <div class="col l-8">
+                  <input type="email" class="ip__email" name="email" required placeholder="Email" >
+                </div>
+                <div class="col l-4">
+                  <input type="tel" class="ip__phone"  required name="sdt" placeholder="Phone">
+                </div>
+              </div>
+              <input type="text" class="ip__address" required name="diachi" placeholder="Address" id="">
+              <p class="method__title">Shipping method</p>
+              <div class="row shipping__container">
+                <div class="col l-2">
+                  <input class="rad_ship" type="radio" checked name="" id="" value="">
+                </div>
+                <div class="col l-6">
+                  <p class="ghtn">Giao hàng tận nơi</p>
+                </div>
+                <div class="col l-4">
+                  <p class="gia__ship"></p>
+                </div>
+              </div>
+              <p class="payment__title">Payment method</p>
+              <div class="row payment__container">
+                <div class="col l-2">
+                  <input class="rad__pay" type="radio" checked name="" id="" value="">
+                </div>
+                <img class="col l-1 imagettknh" src="https://hstatic.net/0/0/global/design/seller/image/payment/cod.svg?v=4" alt="">
+                <div class="col l-9 ttknh">Thanh toán khi nhận hàng (COD)</div>
+              </div>
+              <br>
+              <button type="submit" class="finish__checkout">Finish your order</button>
+            </form>
+          </div>
+          <div class="col l-1"></div>
+          <div class="col l-5 checkout__right">
+            <%for(var i=0;i<arrayCart.length;i++){%>
+              <div class="row">
+                <div class="col l-3">
+                  <img class="image__item__checkout" src="<%=arrayCart[i].hinh_truoc%>" alt="">
+                  <p class="SL__checkout"><%=arrayCart[i].soluong%></p>
+                </div>
+                <div class="col l-6"><p class="checkout__name__size"><%=arrayCart[i].tensp%></p> <p class="checkout__name__size"><%=arrayCart[i].masize%></p></div>
+                <div class="col l-3 checkout__price"><%=((arrayCart[i].giasp)/1000).toFixed(3)%> VND</div>
+              </div>
+            <%}%>
+
+            
+            <div class="total__checkout">
+              <div class="row">
+                <p class="col l-6 title__total__">Total</p>
+                <p class="col l-6 title__price__"><%=((arrayXu[0].tongtien)/1000).toFixed(3)%> VND</p>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <!-- BOTTOM -->
+    <%- include ('./bottom') -%>
+  </body>
+  <script src="./js/js.js"></script>
+</html>

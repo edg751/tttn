@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SWE - Collection</title>
+    <link rel="stylesheet" href="../css/grid.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="shortcut icon" href="//theme.hstatic.net/1000344185/1000806553/14/favicon.png?v=294" type="image/png" />
+</head>
+<body>
+    <!-- HEADER -->
+    <%- include ('./header') -%>
+    <!-- BODY -->
+    <div class="container">
+        <!-- <td><%= dataItem[0].hinhanhsp %></td> -->
+        <div class="container-collection grid wide">
+            <div class="row">
+                <% for (let i=0 ; i < dataItem.length; i++){ %>
+                    <% if (dataItem[i].masize == 'S') { %>
+                        <div class="col l-3">
+                            <a href="/products/<%=dataItem[i].masp%>" class="collection-item">
+                                <img class="collection__img" src="<%=dataItem[i].hinh_truoc%>" alt="">
+                                <img class="collection__imgsau" src="<%=dataItem[i].hinh_sau%>" alt=""  >
+                                <p class="collection__item__name">
+                                    <%=dataItem[i].tensp%>
+                                </p>
+                                <p class="collection__price"><%=((dataItem[i].giasp)/1000).toFixed(3)%> VNĐ</p>
+                                <% if(dataItem[i].maphanloai!='phukien') {%>
+                                <div class="collection__size">
+                                    <!-- SIZE S -->
+                                    <% var flagS = true; %>
+                                    <% for (var a=0 ; a< dataItem.length; a++) { %>
+                                        <% if(dataItem[i].masp == dataItem[a].masp) {%>
+                                            <% if(flagS == false) break; %>
+                                            <% if (dataItem[a].masize == 'S' && dataItem[a].tonkho > 0) { %>
+                                                <p class="size__S">S</p>
+                                                <% flagS=false; %>
+                                            <% } else { %>
+                                                <p class="size__S no-active">S</p>
+                                                <% flagS=false; %>
+                                            <% } %>
+                                        <% } %>
+                                    <% } %>
+
+                                    <!-- SIZE M -->
+                                    <% var flagM = true; %>
+                                    <% for (a ; a< dataItem.length; a++) { %>
+                                        <% if(dataItem[i].masp == dataItem[a].masp) {%>
+                                            <% if(flagM == false) break; %>
+                                            <% if (dataItem[a].masize == 'M' && dataItem[a].tonkho > 0) { %>
+                                                <p class="size__M">M</p>
+                                                <% flagM=false; %>
+                                            <% } else { %>
+                                                <p class="size__M no-active">M</p>
+                                                <% flagM=false; %>
+                                            <% } %>
+                                        <% } %>
+                                    <% } %>
+                                    
+                                    <!-- SIZE L -->
+                                    <% var flagL = true; %>
+                                    <% for (a ; a< dataItem.length; a++) { %>
+                                        <% if(dataItem[i].masp == dataItem[a].masp) {%>
+                                            <% if(flagL == false) break; %>
+                                            <% if (dataItem[a].masize == 'L' && dataItem[a].tonkho > 0) { %>
+                                                <p class="size__L">L</p>
+                                                <% flagL=false; %>
+                                            <% } else { %>
+                                                <p class="size__L no-active">L</p>
+                                                <% flagL=false; %>
+                                            <% } %>
+                                        <% } %>
+                                    <% } %>
+
+                                    <!-- SIZE XL -->
+                                    <% var flagXL = true; %>
+                                    <% for (a ; a< dataItem.length; a++) { %>
+                                        <% if(dataItem[i].masp == dataItem[a].masp) {%>
+                                            <% if(flagXL == false) break; %>
+                                            <% if (dataItem[a].masize == 'XL' && dataItem[a].tonkho > 0) { %>
+                                                <p class="size__L">XL</p>
+                                                <% flagXL=false; %>
+                                            <% } else { %>
+                                                <p class="size__XL no-active">XL</p>
+                                                <% flagXL=false; %>
+                                            <% } %>
+                                        <% } %>
+                                    <% } %>
+                                </div>
+                                <%}%>
+                            </a>
+                        </div>
+                    <% } %>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <!-- BOTTOM -->
+    <%- include ('./bottom') -%>
+</body>
+<script src="../js/js.js"></script>
+</html>

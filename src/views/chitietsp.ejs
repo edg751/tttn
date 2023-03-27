@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/grid.css" />
+    <link rel="stylesheet" href="../css/qlsp.css" />
+    <link rel="shortcut icon" href="//theme.hstatic.net/1000344185/1000806553/14/favicon.png?v=294" type="image/png" />
+    <title>Quản lý sản phẩm </title>
+</head>
+<body class="body__qlsp">
+    <div class="contaier__qlsp">
+        <div class="qlsp__header">
+            CHI TIẾT SẢN PHẨM
+        </div>
+        <div class="grid qlsp__container">
+            <p class="title__dssp"> Tên sản phẩm: 
+                <%=dataItem[0].masp%> / mã sản phẩm:  <%=dataItem[0].tensp%>
+            </p>
+            <div class="list__dssp">
+                <div class="row row__qlsp">
+                    <div class="col l-3 qlsp_left_container">
+                        <a href="/qlsp" class="qlsp__title"> <i class="fa-sharp fa-solid fa-list-check icon__qlsp"></i>Quản Lý Sản Phẩm</a>
+                        <p class="nav__tieude"><i class="fa-sharp fa-solid fa-diagram-project" icon__qlsp></i> Quản lý đơn hàng</p>
+                        <a class="qldh__link" href=""><i class="fa-solid fa-receipt icon_nav_dh"></i>Đơn hàng chờ duyệt</a>
+                        <a class="qldh__link" href="" > <i class="fa-solid fa-file-invoice-dollar icon_nav_dh"></i>Đơn hàng đã duyệt</a>
+                        <a href="/qlsp" class="nav__tieude"><i class="fa-sharp fa-solid fa-tarp icon__qlsp"></i>Quản lý sản phẩm</a>
+                    </div>
+                    <div class="col l-1"></div>
+                        <form action="" method="post" class="form-button">
+                        <div class="col l-8">
+                            <label for="" class="ngaybatdauban">Ngày bắt đầu bán : </label>
+                            <input class="sp-ngayban" name="ngayban" value="<%=dataDay%>" type="date"  required></input>
+                            <br>
+                            <label for="" class="ngaybatdauban">Lượt mua :  </label>
+                            <input class="sp-luotmua" name="luotmua" value="<%=dataCTSP[0].luotmua%>" min="0" type="number" required></input>
+                            <br>
+                            <label for="" class="ngaybatdauban">Giá sản phẩm :  </label>
+                            <input class="sp-gia" name="giasp" value="<%= dataCTSP[0].giasp %>" min="0" type="number" required></input>
+                            <br>
+                            <label for="" class="ngaybatdauban">Thông tin sản phẩm:  </label>
+                            <input class="sp-info" name="infosp" type="text" value="<%= dataCTSP[0].infosanpham%>" required></input>
+                            <br>
+                            
+                            <label for="" class="ngaybatdauban">Mã phân loại :  </label>
+                            <select name="phanloai" class="sp-phanloai">
+                                <% for(var i =0;i<dataPL.length;i++) {%>
+                                    <option value="<%=dataPL[i].maphanloai%>" <% if(dataPL[i].maphanloai==dataCTSP[i].maphanloai){%> selected <%}%> > <%=dataPL[i].maphanloai%></option>
+                                <%}%>
+                            </select>
+                                <% for(var i =0;i<dataSize.length;i++) {%>
+                                    <br>
+                                    <label for="" class="ngaybatdauban hidden-pk-<%=dataSize[i].masize%>">Tồn kho size <%=dataSize[i].masize%>:  </label>
+                                    <input class="sp-tonkho sp-size-<%=dataCTSP[i].masize%>" name="tonkho_<%=dataCTSP[i].masize%>" value="<%=dataCTSP[i].tonkho%>" type="number" required></input>
+                                    <input type="text" hidden name="macthidden<%=i%>"  value="<%= dataCTSP[i].machitiet%>">
+                                <%}%>
+                            
+                            <br>
+                            <label for="" class="sp-hinh-tt">Hình 1 :  </label>
+                            <input class="sp-hinh" name="hinh1"  type="text" required value="<%=dataHinhSP[0].hinhanhsp%>"></input>
+                            <input type="text" name="hiddenanh1"  hidden value="<%=dataHinhSP[0].mahinhanh%>" id="">
+                            <br>
+                            <label for="" class="sp-hinh-tt">Hình 2 :  </label>
+                            <input class="sp-hinh" name="hinh2"  type="text" required value="<%=dataHinhSP[1].hinhanhsp%>"></input>
+                            <input type="text" name="hiddenanh2"  hidden value="<%=dataHinhSP[1].mahinhanh%>" id="">
+                            <br>
+                            <label for="" class="sp-hinh-tt">Hình 3 :  </label>
+                            <input class="sp-hinh" name="hinh3"  type="text" required value="<%=dataHinhSP[2].hinhanhsp%>"></input>
+                            <input type="text" name="hiddenanh3" hidden value="<%=dataHinhSP[2].mahinhanh%>" id="">
+                            <br>
+                            <label for="" class="sp-hinh-tt">Hình 4 :  </label>
+                            <input class="sp-hinh" name="hinh4"  type="text" required value="<%=dataHinhSP[3].hinhanhsp%>"></input>
+                            <input type="text" name="hiddenanh4" hidden  value="<%=dataHinhSP[3].mahinhanh%>" id="">
+                            <br>
+                            <label for="" class="sp-hinh-tt">Hình 5 :  </label>
+                            <input class="sp-hinh" name="hinh5"  type="text" required value="<%=dataHinhSP[4].hinhanhsp%>"></input>
+                            <input type="text" name="hiddenanh5" hidden  value="<%=dataHinhSP[4].mahinhanh%>" id="">
+                            <br>
+                            <label for="" class="sp-hinh-tt">Hình 6 :  </label>
+                            <input class="sp-hinh" name="hinh6"  type="text" required value="<%=dataHinhSP[5].hinhanhsp%>"></input>
+                            <input type="text" name="hiddenanh6" hidden  value="<%=dataHinhSP[5].mahinhanh%>" id="">
+                            <br>
+                            <label for="" class="sp-hinh-tt">Hình 7 :  </label>
+                            <input class="sp-hinh" name="hinh7"  type="text" required value="<%=dataHinhSP[6].hinhanhsp%>"></input>
+                            <input type="text" name="hiddenanh7" hidden  value="<%=dataHinhSP[6].mahinhanh%>" id="">
+                        </div>
+                        <div class="col l-2">
+                                <button class="sp-xoa sp-them sp-capnhat" name="" type="submit" value="" >Cập nhật</button>
+                        </div>
+                    </form>
+                    </div>
+    
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/themsp.js"></script>
+</html>
