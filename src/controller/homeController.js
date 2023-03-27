@@ -1,5 +1,7 @@
 import pool from '../configs/connectDB';
 
+
+
 let getHomePage = async (req, res) => {
   var cookie =  Math.floor((Math.random() * 10000000000000) + 100000000000);
   if (!req.cookies.cart){
