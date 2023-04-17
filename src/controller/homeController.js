@@ -1,7 +1,5 @@
 import pool from '../configs/connectDB';
 
-
-
 let getHomePage = async (req, res) => {
   var cookie =  Math.floor((Math.random() * 10000000000000) + 100000000000);
   if (!req.cookies.cart){
@@ -9,18 +7,18 @@ let getHomePage = async (req, res) => {
     res.cookie('cart', cookie);
   }
 
-try{
-  var SL=await pool.execute(`SELECT token, SUM(soluong) as SL FROM cart WHERE token = '${req.cookies.cart}' GROUP BY token`);
-  return res.render('index.ejs',{SoLuongCart:SL[0]});
-}
-catch(Ex){
-  return res.render('index.ejs');
-}
+  try{
+    var SL=await pool.execute(`SELECT token, SUM(soluong) as SL FROM CART WHERE token = '${req.cookies.cart}' GROUP BY token`);
+    return res.render('index.ejs',{SoLuongCart:SL[0]});
+  }
+  catch(Ex){
+    return res.render('index.ejs');
+  }
 };
 
 let getNoSearch = async (req, res) => {
 try{
-  var SL=await pool.execute(`SELECT token, SUM(soluong) as SL FROM cart WHERE token = '${req.cookies.cart}' GROUP BY token`);
+  var SL=await pool.execute(`SELECT token, SUM(soluong) as SL FROM CART WHERE token = '${req.cookies.cart}' GROUP BY token`);
   return res.render('noresultsearch.ejs',{SoLuongCart:SL[0]});
 }
 catch(Ex){
@@ -38,7 +36,8 @@ let getCollections = async (req, res) => {
   const arraySP = await pool.execute('SELECT * FROM SANPHAM join CHITIETSANPHAM ON SANPHAM.masp = CHITIETSANPHAM.masp');
 
   try{
-    var SL=await pool.execute(`SELECT token, SUM(soluong) as SL FROM cart WHERE token = '${req.cookies.cart}' GROUP BY token`);
+
+    var SL=await pool.execute(`SELECT TOKEN, SUM(soluong) as SL FROM CART WHERE token = '${req.cookies.cart}' GROUP BY token`);
     return res.render('collections.ejs',{dataItem:arraySP[0],SoLuongCart:SL[0]});
   }
   catch(Ex){
@@ -50,7 +49,7 @@ let getCollections = async (req, res) => {
 let getProducts = async (req, res) => {
   let maSP = req.params.itemID;
   const arraySP = await pool.execute(`SELECT * FROM SANPHAM join CHITIETSANPHAM ON SANPHAM.masp = CHITIETSANPHAM.masp WHERE SANPHAM.masp = '${maSP}' `);
-  const arrayIM = await pool.execute(`SELECT * FROM sanpham_hinhanhsp WHERE masp ='${maSP}'`);
+  const arrayIM = await pool.execute(`SELECT * FROM SANPHAM_HINHANHSP WHERE masp ='${maSP}'`);
   try{
     var SL=await pool.execute(`SELECT token, SUM(soluong) as SL FROM cart WHERE token = '${req.cookies.cart}' GROUP BY token`);
 
@@ -74,7 +73,7 @@ let addCart = async (req, res) => {//POST
   console.log(cart[0].length);
   if(cart[0].length>0){
         try{
-          await pool.execute(`UPDATE cart SET soluong = (soluong+1) WHERE masp='${maSP}' AND size ='${size}' AND token = '${cookie}'`);   
+          await pool.execute(`UPDATE CArT SET soluong = (soluong+1) WHERE masp='${maSP}' AND size ='${size}' AND token = '${cookie}'`);   
         }
         catch (Ex){
           console.log(Ex);
@@ -99,7 +98,7 @@ return res.redirect(`/products/${maSP}`);
 let getCart = async (req, res) => {
   var cookie=req.cookies.cart;
 
-  const arraySP = await pool.execute(`SELECT * FROM CART join CHITIETSANPHAM ON CART.masp = CHITIETSANPHAM.masp AND CART.size=chitietsanpham.masize AND token = ${cookie}`);
+  const arraySP = await pool.execute(`SELECT * FROM CART join CHITIETSANPHAM ON CART.masp = CHITIETSANPHAM.masp AND CART.size=CHITIETSANPHAM.masize AND token = ${cookie}`);
 
   try{
     var SL=await pool.execute(`SELECT token, SUM(soluong) as SL FROM cart WHERE token = '${req.cookies.cart}' GROUP BY token`);
@@ -142,13 +141,13 @@ let deleleItemCart = async (req, res) => {
 let searchresult =  async (req, res) => {
   var inputSearch = '';
   inputSearch+=req.body.textSearch;
-  var arraySPSearch=await pool.execute(`SELECT * FROM SANPHAM JOIN chitietsanpham on sanpham.masp=chitietsanpham.masp WHERE tensp LIKE '%${inputSearch}%'`);
+  var arraySPSearch=await pool.execute(`SELECT * FROM SANPHAM JOIN CHITIETSANPHAM on SANPHAM.masp=CHITIETSANPHAM.masp WHERE tensp LIKE '%${inputSearch}%'`);
   if((arraySPSearch[0].length)==0){
     return res.redirect('/noresultsearch');
   }
 
   try{
-    var SL=await pool.execute(`SELECT token, SUM(soluong) as SL FROM cart WHERE token = '${req.cookies.cart}' GROUP BY token`);
+    var SL=await pool.execute(`SELECT token, SUM(soluong) as SL FROM CART WHERE token = '${req.cookies.cart}' GROUP BY token`);
     return res.render('searchresult.ejs',{dataItem :arraySPSearch[0],SoLuongCart:SL[0]}); 
   }
   catch(Ex){
@@ -159,13 +158,13 @@ let searchresult =  async (req, res) => {
 };
 
 let getBestSeller = async (req, res) => {
-  var arraySPBestseller=await pool.execute(`SELECT * FROM SANPHAM JOIN chitietsanpham on sanpham.masp=chitietsanpham.masp WHERE chitietsanpham.masize='S' OR chitietsanpham.masize='M' OR chitietsanpham.masize='L' OR chitietsanpham.masize='XL'  ORDER BY chitietsanpham.luotmua DESC`);
+  var arraySPBestseller=await pool.execute(`SELECT * FROM SANPHAM JOIN CHITIETSANPHAM on SANPHAM.masp=CHITIETSANPHAM.masp WHERE CHITIETSANPHAM.masize='S' OR CHITIETSANPHAM.masize='M' OR CHITIETSANPHAM.masize='L' OR CHITIETSANPHAM.masize='XL'  ORDER BY CHITIETSANPHAM.luotmua DESC`);
   if((arraySPBestseller[0].length)==0){
     return res.redirect('/noresultsearch');
   }
 
   try{
-    var SL=await pool.execute(`SELECT token, SUM(soluong) as SL FROM cart WHERE token = '${req.cookies.cart}' GROUP BY token`);
+    var SL=await pool.execute(`SELECT token, SUM(soluong) as SL FROM CART WHERE token = '${req.cookies.cart}' GROUP BY token`);
     return res.render('bestseller.ejs',{dataItem :arraySPBestseller[0],SoLuongCart:SL[0]}); 
   }
   catch(Ex){
@@ -175,7 +174,7 @@ let getBestSeller = async (req, res) => {
 };
 
 let getTops = async (req, res) => {
-  var arrayTops=await pool.execute(`SELECT * FROM SANPHAM JOIN chitietsanpham on sanpham.masp=chitietsanpham.masp WHERE chitietsanpham.maphanloai='ao'`);
+  var arrayTops=await pool.execute(`SELECT * FROM SANPHAM JOIN CHITIETSANPHAM on sanpham.masp=CHITIETSANPHAM.masp WHERE CHITIETSANPHAM.maphanloai='ao'`);
   if((arrayTops[0].length)==0){
     return res.render('noresultsearch.ejs');
   }
@@ -190,7 +189,7 @@ let getTops = async (req, res) => {
 };
 
 let getOuterwear= async (req, res) => {
-  var arrayOuterwear=await pool.execute(`SELECT * FROM SANPHAM JOIN chitietsanpham on sanpham.masp=chitietsanpham.masp WHERE chitietsanpham.maphanloai='aokhoac'`);
+  var arrayOuterwear=await pool.execute(`SELECT * FROM SANPHAM JOIN CHITIETSANPHAM on sanpham.masp=CHITIETSANPHAM.masp WHERE CHITIETSANPHAM.maphanloai='aokhoac'`);
   if((arrayOuterwear[0].length)==0){
     return res.redirect('/noresultsearch');
   }
@@ -205,7 +204,7 @@ let getOuterwear= async (req, res) => {
 };
 
 let getBottoms= async (req, res) => {
-  var arrayBottoms=await pool.execute(`SELECT * FROM SANPHAM JOIN chitietsanpham on sanpham.masp=chitietsanpham.masp WHERE chitietsanpham.maphanloai='quan'`);
+  var arrayBottoms=await pool.execute(`SELECT * FROM SANPHAM JOIN CHITIETSANPHAM on sanpham.masp=CHITIETSANPHAM.masp WHERE CHITIETSANPHAM.maphanloai='quan'`);
   if((arrayBottoms[0].length)==0){
     return res.render('noresultsearch.ejs');
   }
@@ -220,7 +219,7 @@ let getBottoms= async (req, res) => {
 };
 
 let getAccessories = async (req, res) => {
-  var arrayAccessories=await pool.execute(`SELECT * FROM SANPHAM JOIN chitietsanpham on sanpham.masp=chitietsanpham.masp WHERE chitietsanpham.maphanloai='phukien'`);
+  var arrayAccessories=await pool.execute(`SELECT * FROM SANPHAM JOIN CHITIETSANPHAM on sanpham.masp=CHITIETSANPHAM.masp WHERE CHITIETSANPHAM.maphanloai='phukien'`);
   if((arrayAccessories[0].length)==0){
     return res.redirect('/noresultsearch');
   }
@@ -257,7 +256,7 @@ let deleteSP = async (req, res) => {
     if(arrayCheckDel[0].length>0){
       return res.send('Sản phẩm đã tồn tại bên đặt hàng nên không thể xóa');
     }else{
-      await pool.execute (`DELETE FROM chitietsanpham WHERE masp= '${maSP}'`);
+      await pool.execute (`DELETE FROM CHITIETSANPHAM WHERE masp= '${maSP}'`);
       await pool.execute (`DELETE FROM SANPHAM WHERE masp= '${maSP}'`);
       await pool.execute (`DELETE FROM sanpham_hinhanhsp WHERE masp= '${maSP}' `);
     } 
@@ -288,7 +287,7 @@ let postAddSP= async (req, res) => {
     var tenSP=req.body.tensp;
     await pool.execute(`INSERT INTO sanpham (masp, tensp) VALUES ('${maSP}', '${tenSP}')`);
 
-    await pool.execute(`INSERT INTO chitietsanpham (machitiet, ngaybatdauban, luotmua, giasp, infosanpham, tonkho, maphanloai, masize, masp, hinh_truoc, hinh_sau) VALUES (NULL, NULL, NULL, NULL, NULL, '0', 'ao', 'S', '${maSP}', NULL, NULL), (NULL, NULL, NULL, NULL, NULL, '0', 'ao', 'M', '${maSP}', NULL, NULL), (NULL, NULL, NULL, NULL, NULL, '0', 'ao', 'L', '${maSP}', NULL, NULL), (NULL, NULL, NULL, NULL, NULL, '0', 'ao', 'XL', '${maSP}', NULL, NULL)`);
+    await pool.execute(`INSERT INTO CHITIETSANPHAM (machitiet, ngaybatdauban, luotmua, giasp, infosanpham, tonkho, maphanloai, masize, masp, hinh_truoc, hinh_sau) VALUES (NULL, NULL, NULL, NULL, NULL, '0', 'ao', 'S', '${maSP}', NULL, NULL), (NULL, NULL, NULL, NULL, NULL, '0', 'ao', 'M', '${maSP}', NULL, NULL), (NULL, NULL, NULL, NULL, NULL, '0', 'ao', 'L', '${maSP}', NULL, NULL), (NULL, NULL, NULL, NULL, NULL, '0', 'ao', 'XL', '${maSP}', NULL, NULL)`);
     await pool.execute(`INSERT INTO sanpham_hinhanhsp (hinhanhsp, masp, mahinhanh) VALUES ('URL', '${maSP}', NULL), ('URL', '${maSP}', NULL), ('URL', '${maSP}', NULL), ('URL', '${maSP}', NULL), ('URL', '${maSP}', NULL), ('URL', '${maSP}', NULL), ('URL', '${maSP}', NULL)`);
     return res.redirect(`/chitiet/${maSP}`);
   }
@@ -369,10 +368,10 @@ let postChiTietSP = async (req, res) => {
   var macthidden2=req.body.macthidden2;
   var macthidden3=req.body.macthidden3;
   try{
-    await pool.execute(`UPDATE chitietsanpham SET ngaybatdauban= '${ngayban}',luotmua = '${luotmua}',giasp = '${giasp}',infosanpham='${infosp}',tonkho='${tonkhoS}',maphanloai='${phanloai}',masize='S',masp='${idSP}',hinh_truoc='${hinh1}',hinh_sau='${hinh2}' WHERE masp = '${idSP}' AND machitiet='${macthidden0}'`)
-    await pool.execute(`UPDATE chitietsanpham SET ngaybatdauban= '${ngayban}',luotmua = '${luotmua}',giasp = '${giasp}',infosanpham='${infosp}',tonkho='${tonkhoM}',maphanloai='${phanloai}',masize='M',masp='${idSP}',hinh_truoc='${hinh1}',hinh_sau='${hinh2}' WHERE masp = '${idSP}' AND machitiet='${macthidden1}'`)
-    await pool.execute(`UPDATE chitietsanpham SET ngaybatdauban= '${ngayban}',luotmua = '${luotmua}',giasp = '${giasp}',infosanpham='${infosp}',tonkho='${tonkhoL}',maphanloai='${phanloai}',masize='L',masp='${idSP}',hinh_truoc='${hinh1}',hinh_sau='${hinh2}' WHERE masp = '${idSP}' AND machitiet='${macthidden2}'`)
-    await pool.execute(`UPDATE chitietsanpham SET ngaybatdauban= '${ngayban}',luotmua = '${luotmua}',giasp = '${giasp}',infosanpham='${infosp}',tonkho='${tonkhoXL}',maphanloai='${phanloai}',masize='XL',masp='${idSP}',hinh_truoc='${hinh1}',hinh_sau='${hinh2}' WHERE masp = '${idSP}' AND machitiet='${macthidden3}'`)
+    await pool.execute(`UPDATE CHITIETSANPHAM SET ngaybatdauban= '${ngayban}',luotmua = '${luotmua}',giasp = '${giasp}',infosanpham='${infosp}',tonkho='${tonkhoS}',maphanloai='${phanloai}',masize='S',masp='${idSP}',hinh_truoc='${hinh1}',hinh_sau='${hinh2}' WHERE masp = '${idSP}' AND machitiet='${macthidden0}'`)
+    await pool.execute(`UPDATE CHITIETSANPHAM SET ngaybatdauban= '${ngayban}',luotmua = '${luotmua}',giasp = '${giasp}',infosanpham='${infosp}',tonkho='${tonkhoM}',maphanloai='${phanloai}',masize='M',masp='${idSP}',hinh_truoc='${hinh1}',hinh_sau='${hinh2}' WHERE masp = '${idSP}' AND machitiet='${macthidden1}'`)
+    await pool.execute(`UPDATE CHITIETSANPHAM SET ngaybatdauban= '${ngayban}',luotmua = '${luotmua}',giasp = '${giasp}',infosanpham='${infosp}',tonkho='${tonkhoL}',maphanloai='${phanloai}',masize='L',masp='${idSP}',hinh_truoc='${hinh1}',hinh_sau='${hinh2}' WHERE masp = '${idSP}' AND machitiet='${macthidden2}'`)
+    await pool.execute(`UPDATE CHITIETSANPHAM SET ngaybatdauban= '${ngayban}',luotmua = '${luotmua}',giasp = '${giasp}',infosanpham='${infosp}',tonkho='${tonkhoXL}',maphanloai='${phanloai}',masize='XL',masp='${idSP}',hinh_truoc='${hinh1}',hinh_sau='${hinh2}' WHERE masp = '${idSP}' AND machitiet='${macthidden3}'`)
     // await pool.execute(`INSERT INTO sanpham_hinhanhsp (hinhanhsp, masp) VALUES ('${hinh1}', '${idSP}'), ('${hinh2}', '${idSP}'), ('${hinh3}', '${idSP}'), ('${hinh4}', '${idSP}'), ('${hinh5}', '${idSP}'), ('${hinh6}', '${idSP}'), ('${hinh7}', '${idSP}');`)
     await pool.execute(`UPDATE sanpham_hinhanhsp SET hinhanhsp='${hinh1}' WHERE mahinhanh='${hiddenanh1}'`)
     await pool.execute(`UPDATE sanpham_hinhanhsp SET hinhanhsp='${hinh2}' WHERE mahinhanh='${hiddenanh2}'`)
@@ -412,12 +411,16 @@ let postChiTietSP = async (req, res) => {
   };
 
   let getCheckout = async (req, res) => {
-    var array = await pool.execute(`SELECT * FROM CART JOIN chitietsanpham on cart.masp=chitietsanpham.masp JOIN sanpham ON sanpham.masp=chitietsanpham.masp WHERE cart.token='${req.cookies.cart}' AND chitietsanpham.masize=cart.size`);
-    var arrayMoney = await pool.execute(`SELECT SUM((cart.soluong)*(chitietsanpham.giasp)) AS tongtien FROM CART JOIN chitietsanpham on cart.masp=chitietsanpham.masp WHERE cart.token='${req.cookies.cart}' AND chitietsanpham.masize=cart.size`)
+    try {
+      var array = await pool.execute(`SELECT * FROM CART JOIN CHITIETSANPHAM on CART.masp=CHITIETSANPHAM.masp JOIN SANPHAM ON SANPHAM.masp=CHITIETSANPHAM.masp WHERE CART.token='${req.cookies.cart}' AND CHITIETSANPHAM.masize=CART.size`);
+    var arrayMoney = await pool.execute(`SELECT SUM((CART.soluong)*(CHITIETSANPHAM.giasp)) AS tongtien FROM CART JOIN CHITIETSANPHAM on CART.masp=CHITIETSANPHAM.masp WHERE CART.token='${req.cookies.cart}' AND CHITIETSANPHAM.masize=CART.size`)
+    } catch (error) {
+      console.log("Lỗi đây nè",error)
+    }
 
 
     try{
-      var SL=await pool.execute(`SELECT token, SUM(soluong) as SL FROM cart WHERE token = '${req.cookies.cart}' GROUP BY token`);
+      var SL=await pool.execute(`SELECT token, SUM(soluong) as SL FROM CART WHERE token = '${req.cookies.cart}' GROUP BY token`);
   
       return res.render('checkout.ejs',{arrayCart:array[0],arrayXu:arrayMoney[0],SoLuongCart:SL[0]});
     }

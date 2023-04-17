@@ -3,10 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines": {
-    "node":"14.x"
-  },
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec babel-node src/server.js"
   },
   "author": "",
@@ -15,12 +13,11 @@
     "@babel/core": "7.15.5",
     "@babel/node": "7.15.4",
     "@babel/preset-env": "7.15.6",
-    "body-parser": "^1.20.2",
+    "body-parser": "1.19.0",
     "cookie-parser": "^1.4.6",
     "dotenv": "10.0.0",
     "ejs": "^3.1.8",
-    "express": "^4.18.2",
-    "mysql": "^2.18.1",
+    "express": "4.17.1",
     "mysql2": "2.3.0",
     "nodemon": "^2.0.20"
   }
