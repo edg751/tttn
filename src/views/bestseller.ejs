@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SWE - Collection</title>
+    <title>JP - Collection</title>
     <link rel="stylesheet" href="../css/grid.css" />
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="shortcut icon" href="//theme.hstatic.net/1000344185/1000806553/14/favicon.png?v=294" type="image/png" />
@@ -45,17 +45,17 @@
                                         <% } %>
                                     <% } %>
 
-                                    <!-- SIZE L -->
-                                    <% var flagL = true; %>
+                                    <!-- SIZE S -->
+                                    <% var flagS = true; %>
                                     <% for (a ; a< dataItem.length; a++) { %>
                                         <% if(dataItem[i].masp == dataItem[a].masp) {%>
-                                            <% if(flagL == false) break; %>
-                                            <% if (dataItem[a].masize == 'L' && dataItem[a].tonkho > 0) { %>
-                                                <p class="size__L">L</p>
-                                                <% flagL=false; %>
+                                            <% if(flagS == false) break; %>
+                                            <% if (dataItem[a].masize == 'S' && dataItem[a].tonkho > 0) { %>
+                                                <p class="size__S">S</p>
+                                                <% flagS=false; %>
                                             <% } else { %>
-                                                <p class="size__L no-active">L</p>
-                                                <% flagL=false; %>
+                                                <p class="size__S no-active">S</p>
+                                                <% flagS=false; %>
                                             <% } %>
                                         <% } %>
                                     <% } %>
@@ -75,20 +75,24 @@
                                         <% } %>
                                     <% } %>
 
-                                    <!-- SIZE S -->
-                                    <% var flagS = true; %>
+                                    <!-- SIZE L -->
+                                    <% var flagL = true; %>
                                     <% for (a ; a< dataItem.length; a++) { %>
                                         <% if(dataItem[i].masp == dataItem[a].masp) {%>
-                                            <% if(flagS == false) break; %>
-                                            <% if (dataItem[a].masize == 'S' && dataItem[a].tonkho > 0) { %>
-                                                <p class="size__S">S</p>
-                                                <% flagS=false; %>
+                                            <% if(flagL == false) break; %>
+                                            <% if (dataItem[a].masize == 'L' && dataItem[a].tonkho > 0) { %>
+                                                <p class="size__L">L</p>
+                                                <% flagL=false; %>
                                             <% } else { %>
-                                                <p class="size__S no-active">S</p>
-                                                <% flagS=false; %>
+                                                <p class="size__L no-active">L</p>
+                                                <% flagL=false; %>
                                             <% } %>
                                         <% } %>
                                     <% } %>
+
+
+
+
                                 </div>
                                 <%}%>
                             </a>
