@@ -38,7 +38,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="number" class="col l-3 cart__quantity" value="<%=listCart[i].soluong%>" max="99" min="1"></input>
+                            <input type="number" disabled class="col l-3 cart__quantity" value="<%=listCart[i].soluong%>" max="99" min="1"></input>
                             <div class="col l-2 cart__total"><%sum+=((listCart[i].giasp * listCart[i].soluong))%> <%=((listCart[i].giasp * listCart[i].soluong)/1000).toFixed(3) %></div>
                             <button class="col l-1 cart__close" type="menu" name="deleteItemCart" value="<%= listCart[i].masp %> <%= listCart[i].size %>">X</button>    
                         </div>
